@@ -69,4 +69,4 @@ bqEndConv:
   - RunAIGoalSelector{s=randomstroll} @self
 ```
 
-This example starts the default innkeeper conversation shipped with betonquest for everyplayer who right click the mob. You can use startsignal and endsignal optional to notify the mob whenever a conversation is start- or ended. Usefull if you like to change the mobs pathfindergoals or such.
+This example starts the default innkeeper conversation shipped with betonquest for everyplayer who right click the mob. You can use startsignal and endsignal optional to notify the mob whenever a conversation is start- or ended. Usefull if you like to change the mobs pathfindergoals or such. The conversation end signal will be only send if there is no other player having a conversation started with this mob.
