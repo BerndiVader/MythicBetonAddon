@@ -21,8 +21,8 @@ public class bqMythicMobsKillObjective extends JavaPlugin {
 			getPluginLoader().disablePlugin(this);
 			return;
 		}
-    	String strMMVer = Bukkit.getServer().getPluginManager().getPlugin("MythicMobs").getDescription().getVersion();
-		int mmVer = Integer.valueOf(strMMVer.replaceAll("\\.", ""));
+    	String strMMVer = Bukkit.getServer().getPluginManager().getPlugin("MythicMobs").getDescription().getVersion().replaceAll("[\\D]", "");
+		int mmVer = Integer.valueOf(strMMVer);
 		if (mmVer < 400) {
 			Bukkit.getLogger().warning("Only for MythicMobs 4.0.0 or higher!");
 			getPluginLoader().disablePlugin(this);
