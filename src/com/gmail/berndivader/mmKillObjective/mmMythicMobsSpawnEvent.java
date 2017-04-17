@@ -1,60 +1,42 @@
 package com.gmail.berndivader.mmKillObjective;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 
 import io.lumine.xikage.mythicmobs.MythicMobs;
+import pl.betoncraft.betonquest.Instruction;
 import pl.betoncraft.betonquest.InstructionParseException;
+import pl.betoncraft.betonquest.QuestRuntimeException;
 import pl.betoncraft.betonquest.VariableNumber;
 import pl.betoncraft.betonquest.api.QuestEvent;
+import pl.betoncraft.betonquest.utils.LocationData;
 
 public class mmMythicMobsSpawnEvent extends QuestEvent {
 	
-	private Location location;
+	private LocationData location;
 	private String mobtype;
 	private VariableNumber amount, level;
 
-	public mmMythicMobsSpawnEvent(String packName, String instructions) throws InstructionParseException {
-		super(packName, instructions);
+	public mmMythicMobsSpawnEvent(Instruction instructions) throws InstructionParseException {
+		super(instructions);
 		
-		String[] parse = instructions.split(" ");
-		if (parse.length<4) throw new InstructionParseException("Not enough arguments");
-		String[] coords = parse[1].split(",");
-		if (coords.length<4) throw new InstructionParseException("Wrong location format");
-		World world = Bukkit.getServer().getWorld(coords[3]);
-		if (world==null) throw new InstructionParseException("World does not exist");
-		double x,y,z;
-		try {
-			x = Double.parseDouble(coords[1]);
-			y = Double.parseDouble(coords[2]);
-			z = Double.parseDouble(coords[3]);
-		} catch (NumberFormatException e) {
-			throw new InstructionParseException("Could not parse coordinates");
-		}
-		this.location = new Location(world,x,y,z);
-
-		String[]parseMob = parse[2].split(":");
-        if (parseMob.length != 2) throw new InstructionParseException("Wrong mob format");
-        this.mobtype = parseMob[0];
-        try {
-            this.level = new VariableNumber(packName, parse[2].split(":")[1]);
-        } catch (NumberFormatException e) {
-            throw new InstructionParseException("Could not parse mob level");
-        }
-        try {
-            this.amount = new VariableNumber(packName, parse[3]);
-        } catch (NumberFormatException e) {
-            throw new InstructionParseException("Could not parse mob amount");
-        }		
+		if (instruction.getInstruction().toLowerCase().contains("loc:")) {
+			this.location = instructions.getLocation("loc");
+		} else throw new InstructionParseException("No Location found!");
+		if (instruction.getInstruction().toLowerCase().contains("mobtype:")) {
+			this.mobtype = instructions.getOptional("mobtype");
+		} else throw new InstructionParseException("No MythicMob mobtype found!");
+		
+		this.level = new VariableNumber(instructions.getInt("level",1));
+		this.amount = new VariableNumber(instructions.getInt("amount", 1));
 	}
 
 	@Override
-	public void run(String playerID) {
+	public void run(String playerID) throws QuestRuntimeException {
 		int a = this.amount.getInt(playerID);
 		int l = this.level.getInt(playerID);
+		Location loc = this.location.getLocation(playerID);
 		for (int i=0; i < a; i++) {
-			MythicMobs.inst().getMobManager().spawnMob(this.mobtype, this.location, l);
+			MythicMobs.inst().getMobManager().spawnMob(this.mobtype, loc, l);
 		}
 	}
 }

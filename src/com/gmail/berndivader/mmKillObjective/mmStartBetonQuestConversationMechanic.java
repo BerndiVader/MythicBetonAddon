@@ -28,9 +28,9 @@ public class mmStartBetonQuestConversationMechanic extends SkillMechanic impleme
 	@Override
 	public boolean castAtEntity(SkillMetadata data, AbstractEntity target) {
 		if (!(target.isPlayer())) return false;
-        ConfigPackage p = Config.getPackage(this.packName);
+		ConfigPackage p = Config.getPackages().get(this.packName);
         ConfigAccessor c = p.getConversation(this.convName);
-        if (!(p.isValid()) || (c==null)) return false;
+        if (p==null || c==null) return false;
 		ActiveMob am = null;
 		if (((am=(ActiveMob) data.getCaster())==null)) return false;
 		String playerID = PlayerConverter.getID(BukkitAdapter.adapt(target.asPlayer()));
@@ -38,7 +38,7 @@ public class mmStartBetonQuestConversationMechanic extends SkillMechanic impleme
             Config.sendMessage(playerID, "busy");
             return false;
         }
-        new ActiveMobConversation(playerID, this.packName, this.convName, am, this.sSignal, this.eSignal);
+        new ActiveMobConversation(playerID, Config.getNpc(this.convName), am, this.sSignal, this.eSignal);
 		return true;
 	}
 }

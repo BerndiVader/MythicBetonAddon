@@ -9,8 +9,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
+import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicConditionLoadEvent;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMechanicLoadEvent;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import io.lumine.xikage.mythicmobs.skills.SkillCondition;
 import io.lumine.xikage.mythicmobs.skills.SkillMechanic;
 import pl.betoncraft.betonquest.api.PlayerConversationEndEvent;
 import pl.betoncraft.betonquest.api.PlayerConversationStartEvent;
@@ -26,9 +28,18 @@ public class mmMythicMobsBetonQuestListeners implements Listener {
 	public void onMythicMobsMechanicsLoad(MythicMechanicLoadEvent e) {
 		if (e.getMechanicName().toLowerCase().equals("betonquest")) {
 			SkillMechanic skill = new mmStartBetonQuestConversationMechanic(e.getContainer().getConfigLine(), e.getConfig());
-			if (skill!=null) {
-				e.register(skill);
-			}
+			if (skill!=null) e.register(skill);
+//		} else if (e.getMechanicName().toLowerCase().equals("bqpartytotag")) {
+//			SkillMechanic skill = new mmBetonQuestPartyToScoreboard(e.getContainer().getConfigLine(), e.getConfig());
+//			if (skill!=null) e.register(skill);
+ 		}
+	}
+	
+	@EventHandler
+	public void onMythicMobsConditionLoad(MythicConditionLoadEvent e) {
+		if (e.getConditionName().toLowerCase().equals("bqhastag")) {
+			SkillCondition condition = new mmBetonHasTag(e.getConfig().getLine(), e.getConfig());
+			if (condition!=null) e.register(condition);
 		}
 	}
 	

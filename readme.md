@@ -1,10 +1,14 @@
-# mmBetonQuestAddon for BetonQuest 1.8.5 or smaller and MythicMobs 4.0.0 or higher
+# mmBetonQuestAddon 1.1a for BetonQuest and MythicMobs 4.0.0 or higher
 https://www.spigotmc.org/resources/betonquest.2117/
 
 
 # mmMythicMobsKillObjective
 # mmMythicMobsSpawnEvent
 # MythicMobs betonquest Mechanics
+# MythicMobs bqhastag Condition since 1.1a
+
+## for BetonQuest 1.8.5 or smaller use https://github.com/BerndiVader/bqMythicMobs/blob/master/bqMythicMobsKillObjective185.jar
+## for BetonQuest 1.9.0 or higher use https://github.com/BerndiVader/bqMythicMobs/blob/master/bqMythicMobsKillObjective.jar
 
 
 ## The Objective: mmMythicMobsKillObjective
@@ -13,7 +17,7 @@ How to install? - Just copy the jar file into your plugins folder and restart yo
 
 Syntax? - mmMythicMobsKillObjective type:mmtype1,mmtype2,mmtype3 name:This_is_a_Name,This_is_Another_name level:1-5 amount:5 notify events:whatever
 
-Type or name must be given. Or booth. If type is given then name can be optional and vise versa. type and name can be a list. Example: type:mob1,mob2,mob3 or name:name1,name2,name3
+Type or name must be given. Or booth. If type is given then name can be optional and vise versa. Type and name can be a list. Example: type:mob1,mob2,mob3 or name:name1,name2,name3
 
 If you use space in names then replace them with "_" in the objective. Example: mobdisplayname "a Mythic Mob" must be "a_Mythic_Mob" in the objective.
 
@@ -22,13 +26,38 @@ Level: Optional. Can be a single value or ranged. Ranged looks this: level:3-8 =
 
 ## The Event: mmMythicMobsSpawnEvent
 
-Syntax? - mmMythicMobsSpawnEvent x,y,z,worldname mobtype:level amount
+Syntax? - mmMythicMobsSpawnEvent loc:x,y,z,worldname mobtype:mobname level:integer amount:integer
+old Syntax for 1.8.5: - mmMythicMobsSpawnEvent x,y,z,worldname mobtype:mobname level:integer amount:integer
 
 
-x,y,z are the coordinates followed by the worldname. mobtype is the mobtype followed by the moblevel. amount is how many mobs will be spawned.
+loc: x,y,z are the coordinates followed by the worldname. 
+mobtype: valid MythicMobs Mob.
+level: the level of the mob. 
+amount: is how many mobs will be spawned.
 
 Example: mmMythicMobsSpawnEvent 0,70,0,world BigBoss:99 1
+since 1.9.0 new Example: mmMythicMobsSpawnEvent loc:0,70,0,world BigBoss:99 1
 This will spawn one mob of the type BigBoss at the location 0,70,0 in world with the level of 99.
+
+
+
+## The SkillCondition: bqhastag (since 1.1a)
+
+Syntax? - Use as MythicMobs skill condition.
+
+### - bqhastag{tag=tagname;pack=packagename;action=true||false}
+
+Usage: This condition meets if a player has the BetonQuest tag tagname in the package packagename.
+
+Example:
+```
+examplebetonquesttagskill:
+  TargetConditions:
+  - bqhastag{tag=blabla;p=default;a=true}
+  Skills:
+  - message{msg="taget has the betonquest tag blabla in package default!"} @world
+```
+
 
 
 ## The SkillMechanic: betonquest

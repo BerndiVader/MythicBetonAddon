@@ -8,11 +8,12 @@ public class ActiveMobConversation extends Conversation {
 	private ActiveMob am;
 	private String startSignal, endSignal;
 
-	public ActiveMobConversation(String playerID, String packName, String conversationID, ActiveMob activeMob, String sSignal, String eSignal) {
-		super(playerID, packName, conversationID, activeMob.getEntity().getBukkitEntity().getLocation());
+	public ActiveMobConversation(String playerID, String conversationID, ActiveMob activeMob, String sSignal, String eSignal) {
+		super(playerID, conversationID, activeMob.getEntity().getBukkitEntity().getLocation());
 		this.am = activeMob;
 		this.startSignal = sSignal;
 		this.endSignal = eSignal;
+		
 	}
 	
 	public ActiveMob getActiveMob() {

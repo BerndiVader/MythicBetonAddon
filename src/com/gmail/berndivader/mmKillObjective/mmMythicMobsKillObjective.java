@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
 import pl.betoncraft.betonquest.BetonQuest;
+import pl.betoncraft.betonquest.Instruction;
 import pl.betoncraft.betonquest.InstructionParseException;
 import pl.betoncraft.betonquest.api.Objective;
 import pl.betoncraft.betonquest.config.Config;
@@ -23,44 +24,35 @@ public class mmMythicMobsKillObjective extends Objective implements Listener {
 	private int level;
 	private int lmin,lmax;
 	
-	public mmMythicMobsKillObjective(String name, String label, String instruction) throws InstructionParseException {
-		super(name, label, instruction);
+	public mmMythicMobsKillObjective(Instruction instruction) throws InstructionParseException {
+		super(instruction);
 		this.types = new String[0];
 		this.names = new String[0];
 		this.level = 0;
 		this.template = MMData.class;
-		String[] is = instruction.split(" ");
-		if (is.length<2) throw new InstructionParseException("Not enough arguments");
-		int a = 1;
-		boolean b = false;
-		for (String i : is) {
-			if (i.contains("type:")) {
-				types=(i.substring(5).split(","));
-			} else if (i.contains("name:")) {
-				names=(i.substring(5).replaceAll("_", " ").split(","));
-			} else if (i.contains("amount:")) {
-				try {
-					a = Integer.parseInt(i.substring(7));
-				} catch (NumberFormatException e) {
-					throw new InstructionParseException("Could not parse amount");
-				}
-			} else if (i.contains("notify")) {
-				b = true;
-			} else if (i.contains("level:")) {
-				this.level=1;
-				if (i.substring(6).contains("-")) {
-					this.level=2;
-					String[] lt = i.substring(6).split("-");
-					this.lmin = Integer.valueOf(lt[0]);
-					this.lmax = Integer.valueOf(lt[1]);
-				} else {
-					this.lmin = Integer.valueOf(i.substring(6));
-				}
+		
+		if (instruction.getInstruction().toLowerCase().contains("type:")) {
+			this.types = instruction.getOptional("type").split(",");
+		}
+		if (instruction.getInstruction().toLowerCase().contains("name:")) {
+			this.names = instruction.getOptional("name").replaceAll("_", " ").split(",");
+		}
+		this.amount = instruction.getInt(instruction.getOptional("amount"), 1);
+		this.notify = instruction.hasArgument("notify");
+		if (instruction.getInstruction().toLowerCase().contains("level:")) {
+			String i = instruction.getOptional("level");
+			this.level=1;
+			if (i.substring(6).contains("-")) {
+				this.level=2;
+				String[] lt = i.substring(6).split("-");
+				this.lmin = Integer.valueOf(lt[0]);
+				this.lmax = Integer.valueOf(lt[1]);
+			} else {
+				this.lmin = Integer.valueOf(i.substring(6));
 			}
 		}
-		if (a<1) throw new InstructionParseException("Amount cannot be less than 1");
-		this.amount=a;
-		this.notify=b;
+		
+		
 	}
 	
 	@EventHandler
@@ -99,6 +91,18 @@ public class mmMythicMobsKillObjective extends Objective implements Listener {
 	public void stop() {
         HandlerList.unregisterAll(this);
 	}
+	
+	@Override
+	public String getProperty(String name, String playerID) {
+		name = name.toLowerCase();
+		if (name.equals("left")) {
+			return Integer.toString(this.amount - ((MMData) dataMap.get(playerID)).getAmount());
+		} else if (name.equals("amount")) {
+			return Integer.toString(((MMData) dataMap.get(playerID)).getAmount());
+		}
+		return "";
+	}
+
 	
 	public static class MMData extends ObjectiveData {
         
