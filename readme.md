@@ -1,6 +1,7 @@
-# mmBetonQuestAddon 1.1a for BetonQuest and MythicMobs 4.0.0 or higher
+# mmBetonQuestAddon 1.2a for BetonQuest and MythicMobs 4.1.0 or higher
 https://www.spigotmc.org/resources/betonquest.2117/
 
+## update 1.2a: added faction option into the kill objective.
 
 # mmMythicMobsKillObjective
 # mmMythicMobsSpawnEvent
@@ -15,13 +16,15 @@ https://www.spigotmc.org/resources/betonquest.2117/
 
 How to install? - Just copy the jar file into your plugins folder and restart your server.
 
-Syntax? - mmMythicMobsKillObjective type:mmtype1,mmtype2,mmtype3 name:This_is_a_Name,This_is_Another_name level:1-5 amount:5 notify events:whatever
+Syntax? - mmMythicMobsKillObjective type:mmtype1,mmtype2,mmtype3 faction:anyfaction,or,a,list name:This_is_a_Name,This_is_Another_name level:1-5 amount:5 notify events:whatever
 
 Type or name must be given. Or booth. If type is given then name can be optional and vise versa. Type and name can be a list. Example: type:mob1,mob2,mob3 or name:name1,name2,name3
 
 If you use space in names then replace them with "_" in the objective. Example: mobdisplayname "a Mythic Mob" must be "a_Mythic_Mob" in the objective.
 
 Level: Optional. Can be a single value or ranged. Ranged looks this: level:3-8 = all mobs with level between 3 and 8 matches.
+
+Faction: Optional. If this field is set, only mobs that match type or name and faction count.
 
 
 ## The Event: mmMythicMobsSpawnEvent

@@ -18,16 +18,16 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 public class mmMythicMobsKillObjective extends Objective implements Listener {
 	
-	private String[] types, names;
-	private int amount;
-	private boolean notify;
-	private int level;
-	private int lmin,lmax;
+	protected String[] types, names, factions;
+	protected int amount;
+	protected boolean notify;
+	protected int level,lmin,lmax;
 	
 	public mmMythicMobsKillObjective(Instruction instruction) throws InstructionParseException {
 		super(instruction);
 		this.types = new String[0];
 		this.names = new String[0];
+		this.factions = null;
 		this.level = 0;
 		this.template = MMData.class;
 		
@@ -36,6 +36,9 @@ public class mmMythicMobsKillObjective extends Objective implements Listener {
 		}
 		if (instruction.getInstruction().toLowerCase().contains("name:")) {
 			this.names = instruction.getOptional("name").replaceAll("_", " ").split(",");
+		}
+		if (instruction.getInstruction().toLowerCase().contains("faction:")) {
+			this.factions = instruction.getOptional("faction").split(",");
 		}
 		this.amount = instruction.getInt(instruction.getOptional("amount"), 1);
 		this.notify = instruction.hasArgument("notify");
@@ -63,7 +66,9 @@ public class mmMythicMobsKillObjective extends Objective implements Listener {
 		} else if (this.level==2) {
 			if (!(e.getMobLevel()>=this.lmin && e.getMobLevel()<=this.lmax)) return;
 		}
-		if (Arrays.asList(this.types).contains(e.getMobType().getInternalName()) || Arrays.asList(this.names).contains(e.getEntity().getCustomName())) {
+		if (Arrays.asList(this.types).contains(e.getMobType().getInternalName()) 
+				|| Arrays.asList(this.names).contains(e.getEntity().getCustomName())) {
+			if (this.factions!=null && !Arrays.asList(this.factions).contains(e.getMob().getFaction())) return;
 			String playerID = PlayerConverter.getID((Player)e.getKiller());
 			if (containsPlayer(playerID) && checkConditions(playerID)) {
 				MMData pData = (MMData)dataMap.get(playerID);

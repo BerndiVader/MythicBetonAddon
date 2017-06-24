@@ -1,4 +1,4 @@
 name: bqMythicMobsKillObjective
 main: com.gmail.berndivader.mmKillObjective.bqMythicMobsKillObjective
-version: 1.1a
-softdepend: [MythicMobs, BetonQuest]
+version: 1.2a
+depend: [MythicMobs, BetonQuest]
