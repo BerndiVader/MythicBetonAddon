@@ -1,4 +1,4 @@
-# mmBetonQuestAddon 1.2a for BetonQuest and MythicMobs 4.1.0 or higher
+# mmBetonQuestAddon 1.3a for BetonQuest and MythicMobs 4.1.0 or higher
 https://www.spigotmc.org/resources/betonquest.2117/
 
 ## update 1.2a: added faction option into the kill objective.
@@ -9,7 +9,7 @@ https://www.spigotmc.org/resources/betonquest.2117/
 # MythicMobs bqhastag Condition since 1.1a
 
 ## for BetonQuest 1.8.5 or smaller use https://github.com/BerndiVader/bqMythicMobs/blob/master/bqMythicMobsKillObjective185.jar
-## for BetonQuest 1.9.0 or higher use https://github.com/BerndiVader/bqMythicMobs/blob/master/bqMythicMobsKillObjective.jar
+## for BetonQuest 1.9.3 or higher use https://github.com/BerndiVader/bqMythicMobs/blob/master/bqMythicMobsKillObjective.jar
 
 
 ## The Objective: mmMythicMobsKillObjective
