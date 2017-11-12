@@ -27,10 +27,20 @@ public class mmStartBetonQuestConversationMechanic extends SkillMechanic impleme
 
 	@Override
 	public boolean castAtEntity(SkillMetadata data, AbstractEntity target) {
-		if (!(target.isPlayer())) return false;
+		if (!(target.isPlayer())) {
+			System.err.println("Player needed for BetonQuest start conversation mechanic!");
+			return false;
+		}
 		ConfigPackage p = Config.getPackages().get(this.packName);
+		if (p==null) {
+			System.err.println("The BetonQuest package "+this.packName+" doesnt exists!");
+			return false;
+		}
         ConfigAccessor c = p.getConversation(this.convName);
-        if (p==null || c==null) return false;
+        if (c==null) {
+			System.err.println("The BetonQuest conversation "+this.convName+" doesnt exists!");
+			return false;
+        }
 		ActiveMob am = null;
 		if (((am=(ActiveMob) data.getCaster())==null)) return false;
 		String playerID = PlayerConverter.getID(BukkitAdapter.adapt(target.asPlayer()));
