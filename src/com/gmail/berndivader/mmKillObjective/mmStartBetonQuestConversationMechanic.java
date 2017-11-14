@@ -48,6 +48,11 @@ public class mmStartBetonQuestConversationMechanic extends SkillMechanic impleme
             Config.sendMessage(playerID, "busy");
             return false;
         }
+        String convID=Config.getNpc(this.convName);
+        if ((convID)==null) {
+			System.err.println("The NPC alias ID for "+this.convName+" doesnt exists in main.yml!");
+			return false;
+        }
         new ActiveMobConversation(playerID, Config.getNpc(this.convName), am, this.sSignal, this.eSignal);
 		return true;
 	}
