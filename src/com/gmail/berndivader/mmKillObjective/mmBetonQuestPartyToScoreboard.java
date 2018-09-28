@@ -9,7 +9,6 @@ import io.lumine.xikage.mythicmobs.skills.SkillMetadata;
 import pl.betoncraft.betonquest.VariableNumber;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-@SuppressWarnings("unused")
 public class mmBetonQuestPartyToScoreboard extends SkillMechanic implements ITargetedEntitySkill {
 
 	private String pTag,pack;
