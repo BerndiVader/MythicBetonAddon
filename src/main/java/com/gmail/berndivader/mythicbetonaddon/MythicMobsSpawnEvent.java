@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import org.bukkit.Location;
 
@@ -10,13 +10,13 @@ import pl.betoncraft.betonquest.VariableNumber;
 import pl.betoncraft.betonquest.api.QuestEvent;
 import pl.betoncraft.betonquest.utils.LocationData;
 
-public class mmMythicMobsSpawnEvent extends QuestEvent {
+public class MythicMobsSpawnEvent extends QuestEvent {
 	
 	private LocationData location;
 	private String mobtype;
 	private VariableNumber amount, level;
 
-	public mmMythicMobsSpawnEvent(Instruction instructions) throws InstructionParseException {
+	public MythicMobsSpawnEvent(Instruction instructions) throws InstructionParseException {
 		super(instructions);
 		
 		if (instruction.getInstruction().toLowerCase().contains("loc:")) {

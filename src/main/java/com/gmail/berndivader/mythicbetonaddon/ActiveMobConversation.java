@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import pl.betoncraft.betonquest.conversation.Conversation;

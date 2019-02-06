@@ -1,0 +1,13 @@
+/.git/
+/.gradle/
+/.settings/
+/bin/
+/build/
+/gradle/
+.classpath
+.project
+archiva.gradle
+gradlew
+gradlew.bat
+postcreate.sh
+precreate.sh

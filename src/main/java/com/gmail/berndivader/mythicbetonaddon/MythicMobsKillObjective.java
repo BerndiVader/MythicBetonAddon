@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import java.util.Arrays;
 
@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
 import pl.betoncraft.betonquest.BetonQuest;
@@ -16,14 +17,14 @@ import pl.betoncraft.betonquest.api.Objective;
 import pl.betoncraft.betonquest.config.Config;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-public class mmMythicMobsKillObjective extends Objective implements Listener {
+public class MythicMobsKillObjective extends Objective implements Listener {
 	
 	protected String[] types, names, factions;
 	protected int amount;
 	protected boolean notify;
 	protected int level,lmin,lmax;
 	
-	public mmMythicMobsKillObjective(Instruction instruction) throws InstructionParseException {
+	public MythicMobsKillObjective(Instruction instruction) throws InstructionParseException {
 		super(instruction);
 		this.types = new String[0];
 		this.names = new String[0];
@@ -89,7 +90,7 @@ public class mmMythicMobsKillObjective extends Objective implements Listener {
 
 	@Override
 	public void start() {
-        Bukkit.getPluginManager().registerEvents(this, BetonQuest.getInstance());
+        Bukkit.getPluginManager().registerEvents(this,(Plugin)BetonQuest.getInstance());
 	}
 
 	@Override

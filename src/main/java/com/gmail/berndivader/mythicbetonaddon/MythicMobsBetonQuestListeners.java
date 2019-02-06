@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import java.util.HashMap;
 
@@ -17,17 +17,17 @@ import io.lumine.xikage.mythicmobs.skills.SkillMechanic;
 import pl.betoncraft.betonquest.api.PlayerConversationEndEvent;
 import pl.betoncraft.betonquest.api.PlayerConversationStartEvent;
 
-public class mmMythicMobsBetonQuestListeners implements Listener {
+public class MythicMobsBetonQuestListeners implements Listener {
     private HashMap<ActiveMob, Integer>  convMobs = new HashMap<>();
 	
-	public mmMythicMobsBetonQuestListeners() {
-		Bukkit.getPluginManager().registerEvents(this, bqMythicMobsKillObjective.inst());
+	public MythicMobsBetonQuestListeners() {
+		Bukkit.getPluginManager().registerEvents(this, MythicBetonAddon.inst());
 	}
 
 	@EventHandler
 	public void onMythicMobsMechanicsLoad(MythicMechanicLoadEvent e) {
 		if (e.getMechanicName().toLowerCase().equals("betonquest")) {
-			SkillMechanic skill = new mmStartBetonQuestConversationMechanic(e.getContainer().getConfigLine(), e.getConfig());
+			SkillMechanic skill = new StartBetonQuestConversationMechanic(e.getContainer().getConfigLine(), e.getConfig());
 			if (skill!=null) e.register(skill);
 //		} else if (e.getMechanicName().toLowerCase().equals("bqpartytotag")) {
 //			SkillMechanic skill = new mmBetonQuestPartyToScoreboard(e.getContainer().getConfigLine(), e.getConfig());
@@ -38,7 +38,7 @@ public class mmMythicMobsBetonQuestListeners implements Listener {
 	@EventHandler
 	public void onMythicMobsConditionLoad(MythicConditionLoadEvent e) {
 		if (e.getConditionName().toLowerCase().equals("bqhastag")) {
-			SkillCondition condition = new mmBetonHasTag(e.getConfig().getLine(), e.getConfig());
+			SkillCondition condition = new BetonHasTag(e.getConfig().getLine(), e.getConfig());
 			if (condition!=null) e.register(condition);
 		}
 	}
@@ -72,7 +72,7 @@ public class mmMythicMobsBetonQuestListeners implements Listener {
                 	convMobs.put(am, i);
                 }
             }
-        }.runTask(bqMythicMobsKillObjective.inst());
+        }.runTask(MythicBetonAddon.inst());
 	}
 	
 	private void sendConvSignal(ActiveMobConversation ac, Player p, boolean s) {

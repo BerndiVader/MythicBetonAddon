@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
@@ -13,11 +13,11 @@ import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.conversation.CombatTagger;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-public class mmStartBetonQuestConversationMechanic extends SkillMechanic implements ITargetedEntitySkill {
+public class StartBetonQuestConversationMechanic extends SkillMechanic implements ITargetedEntitySkill {
 	
 	private String packName, convName, sSignal, eSignal;
 
-	public mmStartBetonQuestConversationMechanic(String skill, MythicLineConfig mlc) {
+	public StartBetonQuestConversationMechanic(String skill, MythicLineConfig mlc) {
 		super(skill, mlc);
 		this.packName = mlc.getString(new String[]{"package","pack","p"},"");
 		this.convName = mlc.getString(new String[]{"conversation","conv","c"},"");

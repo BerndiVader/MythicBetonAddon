@@ -1,4 +1,4 @@
-package com.gmail.berndivader.mmKillObjective;
+package com.gmail.berndivader.mythicbetonaddon;
 
 import org.bukkit.Bukkit;
 
@@ -14,11 +14,11 @@ import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 import pl.betoncraft.betonquest.utils.Utils;
 
-public class mmBetonHasTag extends SkillCondition implements IEntityCondition {
+public class BetonHasTag extends SkillCondition implements IEntityCondition {
 	
 	private String tag, pack;
 
-	public mmBetonHasTag(String line, MythicLineConfig mlc) {
+	public BetonHasTag(String line, MythicLineConfig mlc) {
 		super(line);
 		
 		Bukkit.getLogger().info(line);

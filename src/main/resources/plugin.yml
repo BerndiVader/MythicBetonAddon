@@ -1,0 +1,5 @@
+name: MythicBetonAddon
+main: com.gmail.berndivader.mythicbetonaddon.MythicBetonAddon
+version: ${version}
+loadbefore: [BetonQuest]
+depend: [MythicMobs]

@@ -1,4 +1,0 @@
-name: bqMythicMobsKillObjective
-main: com.gmail.berndivader.mmKillObjective.bqMythicMobsKillObjective
-version: 1.4c
-loadbefore: [BetonQuest]
