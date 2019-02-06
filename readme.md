@@ -1,7 +1,10 @@
 # MythicBetonAddon 1.5c for BetonQuest 2.0 and MythicMobs 4.1.0 or higher
 ### https://www.spigotmc.org/resources/betonquest.2117/
 
-# [DOWNLOAD](http://mc.hackerzlair.org:8080/job/MythicBetontAddon/) [![Build Status](http://mc.hackerzlair.org:8080/job/MythicBetonAddon/badge/icon)] <br>
+# [LATEST VERSION](http://mc.hackerzlair.org:8080/job/MythicBetonAddon/) [![Build Status](http://mc.hackerzlair.org:8080/job/MythicBetonAddon/badge/icon)] <br>
+
+# [EARLIER VERIONS](https://github.com/BerndiVader/MythicBetonAddon/releases/)
+#### for betonquest version 1.8.5 - 1.9.7
 
 ## update 1.5c: more NPE handling.
 ## update 1.4b: more NPE handling.
