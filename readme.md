@@ -1,6 +1,9 @@
-# mmBetonQuestAddon 1.4b for BetonQuest and MythicMobs 4.1.0 or higher
-https://www.spigotmc.org/resources/betonquest.2117/
+# MythicBetonAddon 1.5c for BetonQuest 2.0 and MythicMobs 4.1.0 or higher
+### https://www.spigotmc.org/resources/betonquest.2117/
 
+# [DOWNLOAD](http://mc.hackerzlair.org:8080/job/MythicBetontAddon/) [![Build Status](http://mc.hackerzlair.org:8080/job/MythicBetontAddon/badge/icon)] <br>
+
+## update 1.5c: more NPE handling.
 ## update 1.4b: more NPE handling.
 ## update 1.4a: better NPE handling.
 ## update 1.2a: added faction option into the kill objective.
