@@ -4,10 +4,10 @@ import org.bukkit.Location;
 
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import pl.betoncraft.betonquest.Instruction;
-import pl.betoncraft.betonquest.InstructionParseException;
-import pl.betoncraft.betonquest.QuestRuntimeException;
 import pl.betoncraft.betonquest.VariableNumber;
 import pl.betoncraft.betonquest.api.QuestEvent;
+import pl.betoncraft.betonquest.exceptions.InstructionParseException;
+import pl.betoncraft.betonquest.exceptions.QuestRuntimeException;
 import pl.betoncraft.betonquest.utils.LocationData;
 
 public class MythicMobsSpawnEvent extends QuestEvent {
@@ -31,12 +31,13 @@ public class MythicMobsSpawnEvent extends QuestEvent {
 	}
 
 	@Override
-	public void run(String playerID) throws QuestRuntimeException {
+	protected Void execute(String playerID) throws QuestRuntimeException {
 		int a = this.amount.getInt(playerID);
 		int l = this.level.getInt(playerID);
 		Location loc = this.location.getLocation(playerID);
 		for (int i=0; i < a; i++) {
 			MythicMobs.inst().getMobManager().spawnMob(this.mobtype, loc, l);
 		}
+		return null;
 	}
 }
